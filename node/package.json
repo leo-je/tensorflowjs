@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@tensorflow/tfjs-node-gpu": "^3.11.0"
+  },
+  "name": "tensorflow-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
