@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import router, { setRouter } from './router';
+import router from './router';
 import App from './App.vue';
 
 import ElementPlus from 'element-plus'

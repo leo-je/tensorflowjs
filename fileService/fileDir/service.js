@@ -2,7 +2,7 @@
 const fs = require('fs')
 const url = require('url')
 const path = require('path')
-const mime = require('./mime')
+const mime = require('../service/mime')
 
 const headers = {
   'Access-Control-Allow-Origin': '*', // 允许跨域

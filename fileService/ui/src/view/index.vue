@@ -12,10 +12,11 @@
                             <el-input v-model="branch" placeholder="请输入分支名称" />
                         </el-col>
 
-                        <el-col :span="6">
+                        <el-col :span="7">
                             <el-button type="primary" @click="packageUatApp">uat打包</el-button>
                             <el-button type="primary" @click="packageDebugApp">debug打包</el-button>
                             <el-button type="primary" @click="packageProdApp">prod打包</el-button>
+                            <!-- <el-button type="primary" @click="cancelPackageApp">取消打包</el-button> -->
                             <!-- </el-col>
 
                             <el-col :span="4">-->
@@ -90,7 +91,7 @@ export default defineComponent({
             tableData: ref([]),
             dialogVisible: ref(false),
             packageLog: ref(''),
-            branch: ref('feature/h5-pay')
+            branch: ref('develop')
         };
     },
     components: {
@@ -125,6 +126,15 @@ export default defineComponent({
                 console.log("Connection closed.");
             };
             this.ws = ws;
+        },
+        cancelPackageApp(){
+            let _this = this;
+            console.log(_this.branch);
+            http('post', '/api/cancelPackageApp').then(function (data) {
+                console.log(data)
+                ElMessage(data.msg)
+                _this.packageLog = _this.packageLog + '\ncancelPackageApp';
+            })
         },
         packageUatApp() {
             let _this = this;

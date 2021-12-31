@@ -14,6 +14,11 @@ const routerInfos: Array<RouterInfo> = [
         name: '401',
         componentPath: '../view/401.vue',
     },
+    {
+        path: '/login',
+        name: 'login',
+        componentPath: '../view/login.vue',
+    }
 
 ]
 const getRow = (routerInfo: RouterInfo): RouteRecordRaw => {
@@ -40,6 +45,8 @@ if (routerInfos) {
         routes.push(row)
     })
 }
+
+console.log(routes)
 
 let router = createRouter({
     history: createWebHistory(),
