@@ -63,15 +63,6 @@ app.post('/oauth/authorize', function (req, res) {
     return app.oauth.authorize();
 });
 
-// Get login.
-app.get('/login', function (req) {
-    return render('login', {
-        redirect: req.query.redirect,
-        client_id: req.query.client_id,
-        redirect_uri: req.query.redirect_uri
-    });
-});
-
 // Post login.
 app.post('/oauth/login', function (req, res) {
     // @TODO: Insert your own login mechanism.
