@@ -15,6 +15,13 @@ array-flatten@1.1.1:
   resolved "https://registry.npm.taobao.org/array-flatten/download/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
 
+asn1@^0.2.4:
+  version "0.2.6"
+  resolved "https://registry.npmmirror.com/asn1/download/asn1-0.2.6.tgz?cache=0&sync_timestamp=1635986760581&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fasn1%2Fdownload%2Fasn1-0.2.6.tgz#0d3a7bb6e64e02a90c0303b31f292868ea09a08d"
+  integrity sha1-DTp7tuZOAqkMAwOzHykoaOoJoI0=
+  dependencies:
+    safer-buffer "~2.1.0"
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbalanced-match%2Fdownload%2Fbalanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -24,6 +31,13 @@ basic-auth@1.1.0:
   version "1.1.0"
   resolved "https://registry.npm.taobao.org/basic-auth/download/basic-auth-1.1.0.tgz#45221ee429f7ee1e5035be3f51533f1cdfd29884"
   integrity sha1-RSIe5Cn37h5QNb4/UVM/HN/SmIQ=
+
+bcrypt-pbkdf@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.nlark.com/bcrypt-pbkdf/download/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
+  integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
+  dependencies:
+    tweetnacl "^0.14.3"
 
 bluebird@3.5.0:
   version "3.5.0"
@@ -108,6 +122,13 @@ cookie@0.4.1:
   version "0.4.1"
   resolved "https://registry.nlark.com/cookie/download/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
   integrity sha1-r9cT/ibr0hupXOth+agRblClN9E=
+
+cpu-features@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmmirror.com/cpu-features/download/cpu-features-0.0.2.tgz#9f636156f1155fd04bdbaa028bb3c2fbef3cea7a"
+  integrity sha1-n2NhVvEVX9BL26oCi7PC++886no=
+  dependencies:
+    nan "^2.14.1"
 
 debug@2.6.9:
   version "2.6.9"
@@ -357,6 +378,11 @@ ms@2.1.3:
   resolved "https://registry.npmmirror.com/ms/download/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=
 
+nan@^2.14.1, nan@^2.15.0:
+  version "2.15.0"
+  resolved "https://registry.nlark.com/nan/download/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
+  integrity sha1-PzSkc/8Y4VwbVia2KQO1rW5mX+4=
+
 negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
@@ -465,7 +491,7 @@ safe-buffer@5.2.1:
   resolved "https://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.2.1.tgz?cache=0&sync_timestamp=1599054209520&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsafe-buffer%2Fdownload%2Fsafe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=
 
-"safer-buffer@>= 2.1.2 < 3":
+"safer-buffer@>= 2.1.2 < 3", safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.nlark.com/safer-buffer/download/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
@@ -513,6 +539,17 @@ shelljs@^0.8.4:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+ssh2@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmmirror.com/ssh2/download/ssh2-1.5.0.tgz#4dc559ba98a1cbb420e8d42998dfe35d0eda92bc"
+  integrity sha1-TcVZupihy7Qg6NQpmN/jXQ7akrw=
+  dependencies:
+    asn1 "^0.2.4"
+    bcrypt-pbkdf "^1.0.2"
+  optionalDependencies:
+    cpu-features "0.0.2"
+    nan "^2.15.0"
+
 statuses@1.3.1:
   version "1.3.1"
   resolved "https://registry.nlark.com/statuses/download/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
@@ -527,6 +564,11 @@ toidentifier@1.0.1:
   version "1.0.1"
   resolved "https://registry.npmmirror.com/toidentifier/download/toidentifier-1.0.1.tgz?cache=0&sync_timestamp=1636938467744&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftoidentifier%2Fdownload%2Ftoidentifier-1.0.1.tgz#3be34321a88a820ed1bd80dfaa33e479fbb8dd35"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
+
+tweetnacl@^0.14.3:
+  version "0.14.5"
+  resolved "https://registry.npm.taobao.org/tweetnacl/download/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
+  integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
 type-is@1.6.15:
   version "1.6.15"
@@ -548,6 +590,11 @@ unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.nlark.com/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/utf8/download/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 utils-merge@1.0.1:
   version "1.0.1"

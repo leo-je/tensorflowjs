@@ -1,4 +1,4 @@
-
+const ssh2Service = require('./ssh2Service')
 
 const webSocketService = {
 
@@ -30,6 +30,14 @@ webSocketService.initRouter = function () {
                 }
             }
         });
+    });
+
+    this.app.ws('/api/wsssh', function (ws, req) {
+        ssh2Service.createNewServer({
+            host:'127.0.0.1',
+            username:'shengte',
+            password:'1992229',
+        },ws)
     });
 }
 
