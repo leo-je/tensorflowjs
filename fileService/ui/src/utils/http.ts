@@ -38,7 +38,7 @@ instance.interceptors.response.use(function (response) {
         // location.reload()
         sessionStorage.removeItem("access-user")
         let router = getRouter();
-        router.push({ path: "/401" });
+        router.push({ path: "/login" });
     }
     console.log('响应拦截器报错');
     return Promise.reject(error);

@@ -300,8 +300,8 @@ export default defineComponent({
 
       shellWs = new WebSocket(url);
       shellWs.onopen = function (evt) {
-        console.log("Connection open ...");
-        shellWs.send("Hello WebSockets!");
+        console.log("Connection shell open ...");
+        // shellWs.send("Hello WebSockets!");
       };
       // shellWs.onmessage = function (evt) {
       //   // console.log(evt.data);
