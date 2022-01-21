@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
     "express-oauth-server": "^2.0.0",
     "express-ws": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
     "shelljs": "^0.8.4",
     "ssh2": "^1.5.0",
     "utf8": "^3.0.0"

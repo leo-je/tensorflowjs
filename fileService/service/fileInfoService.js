@@ -49,6 +49,8 @@ fileInfoService.getFileList = async (request, response) => {
           response.send(json)
         }
       })
+    }else{
+      response.send({})
     }
   })
 }

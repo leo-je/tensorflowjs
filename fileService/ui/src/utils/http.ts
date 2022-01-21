@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getRouter } from '../router';
 
 //创建axios的一个实例 
-var instance = axios.create({
+let instance = axios.create({
     //baseURL:'http://127.0.0.1:8080/',//接口统一域名
     timeout: 6000
     //设置超时
@@ -12,6 +12,10 @@ instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //------------------- 一、请求拦截器 忽略
 instance.interceptors.request.use(function (config) {
     //console.log(config);
+    let token = sessionStorage.getItem("access-user")
+    if(config && token){
+        config.headers!.token = token;
+    }
     return config;
 }, function (error) {
     console.log(error);
@@ -26,6 +30,7 @@ instance.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
     // 对响应错误
+    console.log(error)
     if (error && error.response && error.response.status == 401) {
         // router.replace({
         //     path: '/'

@@ -303,19 +303,19 @@ export default defineComponent({
         console.log("Connection open ...");
         shellWs.send("Hello WebSockets!");
       };
-      shellWs.onmessage = function (evt) {
-        // console.log(evt.data);
-        let data = JSON.parse(evt.data);
-        // 打印后端返回数据
-        if (term) {
-          term.write(data.Data);
-        }
+      // shellWs.onmessage = function (evt) {
+      //   // console.log(evt.data);
+      //   // let data = JSON.parse(evt.data);
+      //   // 打印后端返回数据
+      //   if (term) {
+      //     // term.write(evt.data);
+      //   }
 
-      };
+      // };
       shellWs.onclose = function (evt) {
         console.log("Connection closed.");
         const t = document.getElementById("terminal")
-        if(t){
+        if (t) {
           t.innerHTML = ''
         }
         term = undefined

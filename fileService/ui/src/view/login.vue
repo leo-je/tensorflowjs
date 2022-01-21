@@ -4,7 +4,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../assets/logo.png"/>
+        <img src="../assets/logo.png" />
       </div>
       <!-- 登录表单区域 -->
       <el-form label-width="0px" class="login_form">
@@ -51,12 +51,20 @@ export default defineComponent({
     login() {
       let _this = this;
       let data = {
+        client_id: 'app',
         username: this.username,
-        password: this.password
+        password: this.password,
+        redirect_uri: 'login',
+        redirect: '/'
       }
       http('post', '/oauth/login', data).then(function (data) {
         console.log(data)
-        ElMessage(data.msg)
+        if (data.code == '0000') {
+          sessionStorage.setItem('access-user',data.token)
+          ElMessage('登陆成功')
+          _this.to("/")
+        }
+
       })
     },
     reset() {
@@ -66,6 +74,13 @@ export default defineComponent({
   },
   mounted() {
     console.log("=================>login");
+    var query = this.$route.query;
+    let token = query.token;
+    if (!token) {
+
+    } else {
+      this.to("/")
+    }
     // this.$router.push({ path:"",redirect:"http://localhost:8080/config/redirect?url="+"http://localhost:9095/"});
     // window.open("http://localhost:8080/config/redirect?url=" + "http://localhost:9095/")
   },
