@@ -36,7 +36,7 @@ instance.interceptors.response.use(function (response) {
         //     path: '/'
         // })
         // location.reload()
-        sessionStorage.removeItem("user")
+        sessionStorage.removeItem("access-user")
         let router = getRouter();
         router.push({ path: "/401" });
     }

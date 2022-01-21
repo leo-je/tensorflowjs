@@ -16,20 +16,28 @@ jwtService.generateToken = function (user) {
 
 jwtService.enableVerify = function (app, userService) {
     let _this = this;
+    this.userService = userService
     app.use(function (req, res, next) {
         console.log("path verify ----> path: " + req.path)
         let upgrade = req.headers.upgrade
         // 放行websocket 和 登陆接口
         if ((upgrade && upgrade === 'websocket') || _this.loginPath === req.path) {
             next()
-        } else if (!req.headers.hasOwnProperty('token')) {
+        } else if (!req.headers.hasOwnProperty('token')
+            && !req.headers.hasOwnProperty('Authorization')) {
             res.status(401)
             res.json({
                 code: "-9999",
                 message: 'token不存在或已过期'
             });
-        } else if (req.headers.hasOwnProperty('token')) {
-            jwt.verify(req.headers.token, _this.secret, function (err, decoded) {
+        } else if (req.headers.hasOwnProperty('token')
+            || req.headers.hasOwnProperty('Authorization')) {
+            let token = req.headers.token || req.headers.Authorization || null
+            if (token) {
+                token = token.replace('Bearer ', '')
+                token = token.replace('JWT ', '')
+            }
+            jwt.verify(token, _this.secret, function (err, decoded) {
                 if (err) {
                     res.status(401)
                     res.json({
@@ -47,7 +55,7 @@ jwtService.enableVerify = function (app, userService) {
 
     // 登陆接口
     app.post(_this.loginPath, (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         let user = userService.getUserByUsername(req.body.username)
         if (req.body.password != user.password) {
             res.send({
@@ -55,10 +63,11 @@ jwtService.enableVerify = function (app, userService) {
                 code: "-9999"
             })
         } else {
+            user.password = null
             res.send({
                 msg: 'login secuss',
                 code: "0000",
-                token: _this.generateToken({ username: user.username })
+                token: _this.generateToken(user)
             })
         }
     })

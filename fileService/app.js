@@ -1,10 +1,10 @@
 const express = require('express')
-// const oauthserver = require('express-oauth-server');
 var webSocketService = require('./service/webSocketService')
 var path = require('path');
 const fileInfoService = require('./service/fileInfoService')
 const appPackageSergvice = require('./service/appPackageSergvice')
 const jwtService = require('./service/jwtService')
+const userService = require('./service/userService')
 
 const expressWS = require('express-ws')
 var util = require('util');
@@ -28,7 +28,7 @@ app.options('*', function (req, res, next) {
     next();
 });
 
-jwtService.enableVerify(app);
+jwtService.enableVerify(app,userService);
 
 app.post('/api/getFileList', function (req, res) {
     fileInfoService.getFileList(req, res);
