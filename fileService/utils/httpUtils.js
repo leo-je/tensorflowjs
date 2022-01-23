@@ -1,5 +1,7 @@
 const https = require('https')
 const http = require('http')
+const axios = require('axios')
+
 const httpUtils = {
 
 }
@@ -21,13 +23,36 @@ httpUtils.get = async function (url, data) {
             http.get(url, function (res) {
                 res.on('data', d => {
                     console.log(typeof d)
-                    body = JSON.parse(d)
+                    try {
+                        body = JSON.parse(d)
+                    } catch (err) {
+                        console.error(err)
+                        console.log(d)
+                        body = JSON.parse(d + '')
+                    }
                     resolve(body);
                 })
             })
         });
     }
 
+    return body
+}
+
+httpUtils.post = async (url, data) => {
+    let body = null
+    await new Promise((resolve, reject) => {
+        axios.post(url, data)
+            .then(res => {
+                // console.log(res)
+                body = res.data
+                resolve(body)
+            })
+            .catch((error) => {
+                console.error(error)
+                reject(error)
+            })
+    })
     return body
 }
 
