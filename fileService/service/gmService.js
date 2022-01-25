@@ -21,7 +21,7 @@ async function createImage() {
             let context = data.result[i]['year'].replace('\n', '') + `年 ` + ln(data.result[i]['title'], 20, '        ') + `\n`
             text += context
         }
-        console.log(text)
+        // console.log(text)
     }
     im.font("宋体", 30).drawText(150, 240, text);
 
@@ -31,7 +31,7 @@ async function createImage() {
     data = await httpUtils.get('http://api.eei8.cn/say/api.php?encode=json')
     console.log(data)
     if (data) {
-        text = ln(data.text, 20)
+        text = ln(data.text, 22)
     }
     im.font("宋体", 40).drawText(960, 800, text);
 
@@ -39,15 +39,15 @@ async function createImage() {
     data = await httpUtils.post('http://www.yiketianqi.com/api?version=v9&appid=23035354&appsecret=8YvlPNrz')
     if (data) {
         // console.log(data)
-        text = "城市:" + data.city + "\n"
+        text = "城市: " + data.city + "\n"
         data = data.data[0]
-        text += '当前气温:' + data.tem + '℃ 白天温度:' + data.tem1 + '℃ 晚上气温:' + data.tem2 +'℃\n'
-        text += '空气指数:' + data.air + '\n'
-        text += '空气等级:' + data.air_level + '\n'
-        text += '空气状况:' + ln(data.air_tips,30,'     ') + '\n'
-        if (data.alarm) {
+        text += '当前气温: ' + data.tem + '℃ 白天温度:' + data.tem1 + '℃ 晚上气温:' + data.tem2 + '℃\n'
+        text += '空气指数: ' + data.air + '\n'
+        text += '空气等级: ' + data.air_level + '\n'
+        text += '空气状况: ' + ln(data.air_tips, 30, '     ') + '\n'
+        if (data.alarm && data.alarm.alarm_level) {
             text += '预警: ' + data.alarm.alarm_level + ' '
-                + data.alarm.alarm_type + '\n       ' + ln(data.alarm.alarm_content, 30,'      ')
+                + data.alarm.alarm_type + '\n       ' + ln(data.alarm.alarm_content, 30, '      ')
         }
         im.font("宋体", 30).drawText(960, 200, text);
     }
