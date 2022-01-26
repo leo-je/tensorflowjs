@@ -1,17 +1,31 @@
 const gm = require('gm').subClass({ imageMagick: true });
 const httpUtils = require('../utils/httpUtils')
-
+const calenderUtils = require('../utils/calendarUtils')
 async function createImage() {
     let im = gm('./test.jpeg')
 
     let historyUrl = 'https://www.ipip5.com/today/api.php?type=json'
     let data = await httpUtils.get(historyUrl)
-    console.log(data)
+    // console.log(data)
     // 问候语
-    let text = getTimeType() + "好,今天是" + data.today;
+    let text = getTimeType() + `好,今天是${data.today}`;
     im.font("宋体", 60).drawText(100, 100, text);
+
+    let today = new Date()
+    let y = today.getFullYear();     //获取日期中的年份
+    let m = today.getMonth() + 1;      //获取日期中的月份(需要注意的是：月份是从0开始计算，获取的值比正常月份的值少1)
+    let d = today.getDate();
+    lunar = calenderUtils.solar2lunar(y, m, d);
+    // console.log(lunar)
+
+    // let lMont = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
+    // let lDay = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二',
+    //     '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十', '二十一', '二十二', '二十三', '二十四',
+    //     '二十五', '二十六', '二十七', '二十八', '二十九', '三十', '三十一']
+    text = `${lunar.ncWeek} ${lunar.IMonthCn}${lunar.IDayCn}  ${lunar.astro}`
+    im.font("宋体", 40).drawText(800, 100, text);
     // 历史上的今天
-    text = '历史上的今天:'
+    text = `历史上的今天:`
     im.font("宋体", 30).drawText(100, 190, text);
     // todo:文字长度,换行
     text = ''
@@ -44,7 +58,7 @@ async function createImage() {
         text += '当前气温: ' + data.tem + '℃ 白天温度:' + data.tem1 + '℃ 晚上气温:' + data.tem2 + '℃\n'
         text += '空气指数: ' + data.air + '\n'
         text += '空气等级: ' + data.air_level + '\n'
-        text += '空气状况: ' + ln(data.air_tips, 30, '     ') + '\n'
+        text += '空气状况: ' + ln(data.air_tips, 25, '     ') + '\n'
         if (data.alarm && data.alarm.alarm_level) {
             text += '预警: ' + data.alarm.alarm_level + ' '
                 + data.alarm.alarm_type + '\n       ' + ln(data.alarm.alarm_content, 30, '      ')
