@@ -1,5 +1,5 @@
 // mock/mime.js
-module.exports = {
+const mime = {
     "apk": "application/vnd.android.package-archive",
     "css": "text/css",
     "gif": "image/gif",
@@ -19,4 +19,6 @@ module.exports = {
     "wma": "audio/x-ms-wma",
     "wmv": "video/x-ms-wmv",
     "xml": "text/xml"
-};
+}
+
+export { mime }
