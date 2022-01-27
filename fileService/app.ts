@@ -2,18 +2,19 @@
 import { Express } from 'express'
 import express from 'express'
 import { WebSocketService } from './service/webSocketService'
-//commonjs形式的导入
-var path = require('path');
+import path from 'path'
 import { FileInfoService } from './service/fileInfoService';
 import { AppPackageSergvice } from './service/appPackageSergvice';
 import { JwtService } from './service/jwtService';
 import { UserService } from './service/userService';
+import cookieparser  from 'cookie-parser'
+
 
 import expressWS from 'express-ws';
 
 const app: Express = express()
 const port = 3002
-
+app.use(cookieparser());
 let wsApp = expressWS(app).app;
 let webSocketService = new WebSocketService(wsApp);
 

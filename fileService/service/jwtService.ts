@@ -25,15 +25,15 @@ export class JwtService {
             if ((upgrade && upgrade === 'websocket') || _this.loginPath === req.path) {
                 next()
             } else if (!req.headers.hasOwnProperty('token')
-                && !req.headers.hasOwnProperty('Authorization')) {
+                && !req.headers.hasOwnProperty('Authorization') && !req.cookies["token"]) {
                 res.status(401)
                 res.json({
                     code: "-9999",
                     message: 'token不存在或已过期'
                 });
             } else if (req.headers.hasOwnProperty('token')
-                || req.headers.hasOwnProperty('Authorization')) {
-                let token = req.headers.token || req.headers.Authorization || null
+                || req.headers.hasOwnProperty('Authorization' || req.cookies["token"])) {
+                let token = req.headers.token || req.headers.Authorization || req.cookies["token"] || null
                 if (token && typeof token == 'string') {
                     token = token.replace('Bearer ', '')
                     token = token.replace('JWT ', '')
@@ -64,11 +64,13 @@ export class JwtService {
                     code: "-9999"
                 })
             } else {
+                let token = _this.generateToken(user)
                 user.password = null
+                res.cookie("token", token)
                 res.send({
                     msg: 'login secuss',
                     code: "0000",
-                    token: _this.generateToken(user)
+                    token
                 })
             }
         })

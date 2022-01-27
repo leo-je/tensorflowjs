@@ -68,7 +68,7 @@ export class FileInfoService {
     let ext = path.extname(pathName)
     ext = ext ? ext.slice(1) : 'unknown'
     // 未知类型一律用 "text/plain" 类型
-    headers['Content-Type'] = mime[ext] || "'text/plain'"
+    headers['Content-Type'] = (mime[ext] || "'text/plain'")+";charset=UTF-8"
 
     // 301重定向
     if (!pathName.endsWith('/') && path.extname(pathName) === '') {

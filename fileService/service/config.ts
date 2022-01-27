@@ -1,6 +1,6 @@
 const config = {
-    appRootDirPath: '/Users/shengte/git/ERP-cloud/cloud-office-busi-rn-app',
-    appreleaseDirPath: '/android/app/build/outputs/apk/release/'
+    appRootDirPath: '/Users/shengte/git/tensorflowjs/fileService',
+    appreleaseDirPath: '/test/'
 }
 
 export { config }
