@@ -8,10 +8,14 @@ export default defineComponent({
   name: 'App',
   components: {
   },
-    mounted() {
+  mounted() {
   },
   beforeCreate() {
-    //this.$router.push({ path: "/" });
+    let token = sessionStorage.getItem("access-user")
+    if (!token) {
+      this.$router.push({ path: "/login" });
+    } else
+      this.$router.push({ path: "/" });
   }
 })
 </script>
