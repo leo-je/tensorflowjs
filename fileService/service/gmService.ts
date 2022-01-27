@@ -1,6 +1,6 @@
 const gm = require('gm').subClass({ imageMagick: true });
 const httpUtils = require('../utils/httpUtils')
-const calenderUtils = require('../utils/calendarUtils')
+import { Calender } from '../utils/calendarUtils';
 async function createImage() {
     let im = gm('./test.jpeg')
 
@@ -15,14 +15,8 @@ async function createImage() {
     let y = today.getFullYear();     //获取日期中的年份
     let m = today.getMonth() + 1;      //获取日期中的月份(需要注意的是：月份是从0开始计算，获取的值比正常月份的值少1)
     let d = today.getDate();
-    lunar = calenderUtils.solar2lunar(y, m, d);
-    // console.log(lunar)
-
-    // let lMont = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
-    // let lDay = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二',
-    //     '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十', '二十一', '二十二', '二十三', '二十四',
-    //     '二十五', '二十六', '二十七', '二十八', '二十九', '三十', '三十一']
-    text = `${lunar.ncWeek} ${lunar.IMonthCn}${lunar.IDayCn}  ${lunar.astro}`
+    let lunar = new Calender().solar2lunar(y, m, d);
+    text = `${lunar["ncWeek"]} ${lunar["IMonthCn"]}${lunar["IDayCn"]}  ${lunar["astro"]}`
     im.font("宋体", 40).drawText(800, 100, text);
     // 历史上的今天
     text = `历史上的今天:`
@@ -78,7 +72,7 @@ async function createImage() {
 
 }
 
-function ln(text, count, str) {
+function ln(text: string, count: number, str?: string) {
     let i = 0
     let newText = ''
     for (let char of text) {
@@ -93,7 +87,7 @@ function ln(text, count, str) {
 }
 
 function getTimeType() {
-    now = new Date(), hour = now.getHours()
+    let now = new Date(), hour = now.getHours()
     if (hour < 6) { return "凌晨"; }
     else if (hour < 9) {
         return "早上";
