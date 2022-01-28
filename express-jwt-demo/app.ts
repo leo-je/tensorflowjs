@@ -1,9 +1,9 @@
 import { Express } from 'express'
 import express from 'express'
-import { WebSocketService } from './service/webSocketService'
+import { WebSocketService } from './common/service/webSocketService'
 import path from 'path'
-import { JwtService } from './service/jwtService';
-import { UserService } from './service/userService';
+import { JwtService } from './common/service/jwtService';
+import { UserService } from './common/service/userService';
 import cookieparser from 'cookie-parser'
 import { config } from './config'
 
@@ -11,6 +11,7 @@ import expressWS from 'express-ws';
 
 const app: Express = express()
 const port = config.app.port
+const hostname = config.app.hostname
 
 app.use(cookieparser());
 let wsApp = expressWS(app).app;
@@ -38,6 +39,6 @@ app.post('/api/getFileList', function (req, res) {
     console.log("")
 })
 
-app.listen(port, () => {
+app.listen(port,hostname, () => {
     console.log(`service app listening at http://0.0.0.0:${port}`)
 })

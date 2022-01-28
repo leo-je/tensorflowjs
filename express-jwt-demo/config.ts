@@ -1,6 +1,6 @@
 const config = {
     app: {
-        host: null,
+        hostname: null,
         port: 3001,
     },
     jwt: {
