@@ -1,7 +1,8 @@
 const gm = require('gm').subClass({ imageMagick: true });
-const httpUtils = require('../utils/httpUtils')
+import { HttpUtils } from '../utils/httpUtils';
 import { Calender } from '../utils/calendarUtils';
 async function createImage() {
+    const httpUtils = new HttpUtils()
     let im = gm('./test.jpeg')
 
     let historyUrl = 'https://www.ipip5.com/today/api.php?type=json'
