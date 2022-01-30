@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken'
 import { Express } from 'express'
 import { UserService } from './userService'
-import { config } from '../../config'
-export class JwtService {
+import config from '../../config'
+
+export default class JwtService {
     secret = config.jwt.secret
     loginPath = config.jwt.loginPath
     // 生成token

@@ -2,10 +2,11 @@ import { Express } from 'express'
 import express from 'express'
 import { WebSocketService } from './common/service/webSocketService'
 import path from 'path'
-import { JwtService } from './common/service/jwtService';
+import JwtService from './common/service/jwtService';
 import { UserService } from './common/service/userService';
 import cookieparser from 'cookie-parser'
-import { config } from './config'
+//es6
+import config from './config'
 
 import expressWS from 'express-ws';
 
@@ -39,6 +40,7 @@ app.post('/api/getFileList', function (req, res) {
     console.log("")
 })
 
-app.listen(port,hostname, () => {
+app.listen(port, hostname, () => {
     console.log(`service app listening at http://0.0.0.0:${port}`)
 })
+
